@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Created by psn14020 on 2015-03-11.
  */
 @Controller
-public class MainController {
+public class  MainController {
     @RequestMapping(value="/")
     public String main() {
         return "login";

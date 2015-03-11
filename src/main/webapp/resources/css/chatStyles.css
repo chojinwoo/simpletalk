@@ -1,0 +1,203 @@
+.ui-loader {
+    display:none;
+}
+
+body{
+    width:100%;
+    height:100%;
+    overflow:auto;
+}
+
+.user-content {
+    width:100%;
+    height:100%;
+}
+
+.user-header {
+    width:100%;
+    height:56px;
+    padding: 11px;
+    background-color:#a5d8c7;
+    border-radius: 5px;
+    -moz-border-radius: 5px;;
+    position:fixed;
+    z-index: 1;
+}
+.user-header > .kind {
+    margin-right:13px;
+    font-size:32px;
+}
+
+.user-header > .active {
+    color:darkgreen;
+}
+
+.user-header > .user-plus, .users {
+    font-size: 32px;
+    position: relative;
+    float: right;
+}
+
+.user-body {
+    padding-top: 56px;
+    padding-bottom: 34px;
+    overflow:auto;
+}
+
+.user-body > span > .list > span {
+    padding-left:11px;
+    margin-top: 22px;
+    font-weight: bold;
+}
+
+.chat {
+    height: auto;
+}
+
+.fa-smile {
+    font-size:2em;
+    padding-top: 3px;
+}
+
+.emo-btn {
+    position: absolute;
+    bottom:6px;
+    right: 61px;
+    cursor:pointer;
+    z-index: 1050;
+}
+
+.emo-paging {
+    padding-top:8px;
+    width:100%;
+    text-align:center;
+}
+.emo-paging > .active {
+    background-color:grey;
+    border-radius: 0.6em;;
+}
+
+.emo-preview {
+    width: 30px;
+    height: 30px;
+}
+
+#emoModal .modal-header {
+    border-bottom: 0px;
+    padding: 0px;
+}
+
+.emo-chat {
+    position: fixed;
+    width:100%;
+    bottom: 42px;
+    right: 0px;
+    background: rgba(165, 216, 199, 0.5);
+    text-align: right;
+    display: none;
+}
+
+.emo-chat > img {
+    height:25%;
+}
+
+.file-btn {
+    position: absolute;
+    bottom: 6px;
+    left: 9px;
+    font-size:2em;
+}
+
+#emoCancel {
+    postion: relative;
+    top: -45px;
+    cursor: pointer;
+    left: -10px;
+}
+
+.chat-emoticon > img {
+    length:25%;
+}
+
+.chat-name {
+    padding-bottom:10px;
+    padding-left: 5px;
+    width:100%;
+    font-weight:bold;
+}
+
+.chat-content {
+    width: 83%;
+    height:auto;
+    background-color:#a5d8c7;
+    padding:5px;
+    font-size:18px;
+}
+
+.chat-content-reverse {
+    margin-left:15%;
+}
+
+.chat-date {
+    font-size:12px;
+    width: 100%;
+    text-align: right;
+    position: relative;
+    top: -15px;
+    z-index:-1;
+}
+
+.chat-date-reverse {
+    font-size:12px;
+    text-align: left;
+    position: relative;
+    top: -15px;
+    z-index:-1;
+}
+
+.chatList {
+    width:100%;
+    height:60px;
+    border :1px solid grey;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding:6px 6px 6px 11px;
+}
+
+.chatList-content {
+    margin-top:3px;
+}
+
+.chatList-badge {
+    float: right;
+    margin-right: 6px;
+    color: white;
+    background-color: firebrick;
+    width: 30px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.user-body > .chatUser-body > .list > .plus {
+    padding-right: 11px;
+    float: right;
+    font-size: 17px;
+}
+
+.user-body > .chatUser-body > .list {
+    border: 1px solid lightgrey;
+    line-height:56px;
+    height:56px;
+    width:100%;
+}
+
+.user-body > .chatUser-body > .group {
+    padding:3px 0px 3px 11px;
+}
+
+.chat-logout{
+    font-size: 2em;
+    position: absolute;
+    bottom: 0px;
+    right: 11px;
+}

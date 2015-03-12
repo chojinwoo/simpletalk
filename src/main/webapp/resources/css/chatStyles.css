@@ -109,10 +109,10 @@ body{
 }
 
 #emoCancel {
-    postion: relative;
-    top: -45px;
     cursor: pointer;
-    left: -10px;
+    position: absolute;
+    top: 4px;
+    right: 4px;
 }
 
 .chat-emoticon > img {

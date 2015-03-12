@@ -124,7 +124,7 @@
             reader.onload = function (e) {
                 $('.emo-chat img').attr('src', e.target.result);
                 $('.console').hide('blind', 200);
-                $('.emo-chat').show('slow')
+                $('.emo-chat').show('slow');
             }
 
             reader.readAsDataURL(input.files[0]);
@@ -218,6 +218,7 @@
         $('.file-btn').on('click', function() {
             var display = $('.console').css('display');
             if(display == 'none') {
+                $('.emo-chat').hide('slow');
                 $('.console').show("blind", 200);
             } else {
                 $('.console').hide("blind", 200);

@@ -121,19 +121,21 @@
     </div>
 </div>
 <script>
-    $.readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('.pic-chat img').attr('src', e.target.result);
-                $('.console').hide('blind', 200);
-                $('.pic-chat').show('slow');
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+    /* 사진 미리보기 설정*/
+//    $.readURL = function(input) {
+//        if (input.files && input.files[0]) {
+//            var reader = new FileReader();
+//
+//            reader.onload = function (e) {
+//                $('.pic-chat img').attr('src', e.target.result);
+//                $('.console').hide('blind', 200);
+//                $('.pic-chat').show('slow');
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
 
     $.emoticonChange = function(firstEmoIdx) {
         $('#emoModal .modal-body').load($('#emoKind .active a').attr('page')+" #emoPage" +firstEmoIdx, function() {
@@ -191,24 +193,25 @@
     $.messageSend = function() {
         var msg = $('.message').val();
         var emoticon = $('.emo-chat > img').attr('src');
-        var picture = $('.pic-chat > img').attr('src');
-        if(picture != null) {
-            var formData = new FormData();
-            formData.append("file", $('.fa-picture-hidden')[0].files[0]);
-
-            $.ajax({
-                url:'/upload',
-                type:'post',
-                data:formData,
-                async:false,
-                processData: false,
-                contentType: false,
-                success:function(data) {
-                    emoticon = data;
-                    $('.pic-chat').hide('slow');
-                }
-            })
-        }
+        /* 사진 업로드 테스트*/
+//        var picture = $('.pic-chat > img').attr('src');
+//        if(picture != null) {
+//            var formData = new FormData();
+//            formData.append("file", $('.fa-picture-hidden')[0].files[0]);
+//
+//            $.ajax({
+//                url:'/upload',
+//                type:'post',
+//                data:formData,
+//                async:false,
+//                processData: false,
+//                contentType: false,
+//                success:function(data) {
+//                    emoticon = data;
+//                    $('.pic-chat').hide('slow');
+//                }
+//            })
+//        }
         stomp.send("/app/message", {}, JSON.stringify({"from":'${id}', "to":"${param.to}", "emoticon":emoticon, "message":msg, "regId":'${regId}'}));
         $('.message').val("");
         $('.emo-chat img').removeAttr('src');
@@ -233,18 +236,18 @@
         })
 
 
-        /* 사진 업로드 및 파일 선택 버튼 클릭시 이벤트*/
-        $('.file-btn').on('click', function() {
-            var display = $('.console').css('display');
-            if(display == 'none') {
-                $('.pic-chat').hide('slow');
-                $('.emo-chat').hide('slow');
-                $('.console').show("blind", 200);
-            } else {
-                $('.console').hide("blind", 200);
-            }
-
-        })
+//        /* 사진 업로드 및 파일 선택 버튼 클릭시 이벤트*/
+//        $('.file-btn').on('click', function() {
+//            var display = $('.console').css('display');
+//            if(display == 'none') {
+//                $('.pic-chat').hide('slow');
+//                $('.emo-chat').hide('slow');
+//                $('.console').show("blind", 200);
+//            } else {
+//                $('.console').hide("blind", 200);
+//            }
+//
+//        })
 
         var firstEmoIdx = 1;
         $.emoticonChange(firstEmoIdx);

@@ -87,7 +87,7 @@
             <div class="console" style="height:100%;background-color:#F0F0F0;">
                 <div class="row" style="text-align:center;">
                     <div class="col-xs-4">
-                        <i class="fa fa-picture-o"></i>
+                        <input type="file" style="ffont-size: 0;position: absolute;z-index: 1;width: 40px;height: 30px;margin-left: 71px;opacity: 0;"><i class="fa fa-picture-o"></i>
                     </div>
                     <div class="col-xs-4">
                         <i class="fa fa-picture-o"></i>
@@ -201,17 +201,14 @@
         $('.file-btn').on('click', function() {
             var display = $('.console').css('display');
             if(display == 'none') {
-                $('.console').show("blind", 200, function() {
-                    $('.user-body').height($('.user-body').height() -$('.console').height());
-                });
-
+                $('.console').show("blind", 200);
             } else {
-                var console_height = $('.console').height();
-                $('.console').hide("blind", 200, function() {
-                    $('.user-body').height($('.user-body').height() +console_height);
-                });
+                $('.console').hide("blind", 200);
             }
 
+        })
+
+        $('.fa-picture-o').on('click', function() {
         })
 
 

@@ -87,7 +87,7 @@
             <div class="console" style="height:100%;background-color:#F0F0F0;">
                 <div class="row" style="text-align:center;">
                     <div class="col-xs-4">
-                        <i class="fa fa-picture-o"><input type="file" style="  font-size: 0;  position: relative;  top: -30px;  width: 40px;  height: 30px;  opacity: 0;"></i>
+                        <i class="fa fa-picture-o"><input class="fa-picture-hidden" type="file"></i>
                     </div>
                     <div class="col-xs-4">
                         <i class="fa fa-picture-o"></i>
@@ -117,6 +117,23 @@
     </div>
 </div>
 <script>
+    $.readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.emo-chat img').attr('src', e.target.result);
+                $('.console').hide('blind', 200);
+                $('.emo-chat').show('slow')
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $('.fa-picture-hidden').on('change', function() {
+        $.readURL(this);
+    })
+
     $.emoticonChange = function(firstEmoIdx) {
         $('#emoModal .modal-body').load($('#emoKind .active a').attr('page')+" #emoPage" +firstEmoIdx, function() {
             $('.emo-body a').off();

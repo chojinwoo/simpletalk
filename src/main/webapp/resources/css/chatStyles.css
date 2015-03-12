@@ -87,7 +87,7 @@ body{
     padding: 0px;
 }
 
-.emo-chat {
+.emo-chat, .pic-chat {
     position: fixed;
     width:100%;
     bottom: 42px;
@@ -97,7 +97,7 @@ body{
     display: none;
 }
 
-.emo-chat > img {
+.emo-chat, .pic-chat > img {
     height:25%;
 }
 
@@ -108,7 +108,7 @@ body{
     font-size:2em;
 }
 
-#emoCancel {
+.emo-cancel {
     cursor: pointer;
     position: absolute;
     top: 4px;

@@ -113,7 +113,11 @@
     </div>
     <div class="emo-chat" aria-hidden="true">
         <img src=""/>
-        <span id="emoCancel" class="glyphicon glyphicon-remove-sign"></span>
+        <span class="glyphicon glyphicon-remove-sign emo-cancel"></span>
+    </div>
+    <div class="pic-chat" aria-hidden="true">
+        <img src=""/>
+        <span class="glyphicon glyphicon-remove-sign emo-cancel"></span>
     </div>
 </div>
 <script>
@@ -122,23 +126,20 @@
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $('.emo-chat img').attr('src', e.target.result);
+                $('.pic-chat img').attr('src', e.target.result);
                 $('.console').hide('blind', 200);
-                $('.emo-chat').show('slow');
+                $('.pic-chat').show('slow');
             }
 
             reader.readAsDataURL(input.files[0]);
         }
     }
-    $('.fa-picture-hidden').on('change', function() {
-        $.readURL(this);
-    })
 
     $.emoticonChange = function(firstEmoIdx) {
         $('#emoModal .modal-body').load($('#emoKind .active a').attr('page')+" #emoPage" +firstEmoIdx, function() {
             $('.emo-body a').off();
             $('.emo-body a').click(function() {
-                $('#emoCancel').closest('p').remove();
+                $('.emo-cancel').closest('p').remove();
                 var src = $(this).find('img').attr('src');
                 $('.emo-chat').find('img').attr('src', src);
                 $('.emo-chat').show('slow');
@@ -218,6 +219,7 @@
         $('.file-btn').on('click', function() {
             var display = $('.console').css('display');
             if(display == 'none') {
+                $('.pic-chat').hide('slow');
                 $('.emo-chat').hide('slow');
                 $('.console').show("blind", 200);
             } else {
@@ -226,12 +228,13 @@
 
         })
 
-        $('.fa-picture-o').on('click', function() {
-        })
-
-
         var firstEmoIdx = 1;
         $.emoticonChange(firstEmoIdx);
+
+
+        $('.fa-picture-hidden').on('change', function() {
+            $.readURL(this);
+        })
 
         $('.emo-body').on('swipeleft', function() {
             var sel = $('.emo-paging .active').index();
@@ -273,9 +276,9 @@
         })
 
 
-        $('#emoCancel').on('click',function() {
+        $('.emo-cancel').on('click',function() {
             $(this).prev().removeAttr('src');
-            $('.emo-chat').hide('slow');
+            $(this).closest('div').hide('slow');
         })
 
         $('.fa-smile').on('click', function() {

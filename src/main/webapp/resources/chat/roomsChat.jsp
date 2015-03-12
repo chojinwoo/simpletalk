@@ -85,9 +85,10 @@
                 }
             </style>
             <div class="console" style="height:100%;background-color:#F0F0F0;">
+                <input type="file"><i class="fa fa-picture-o"></i>
                 <div class="row" style="text-align:center;">
                     <div class="col-xs-4">
-                        <input type="file" style="ffont-size: 0;position: absolute;z-index: 1;width: 40px;height: 30px;margin-left: 71px;opacity: 0;"><i class="fa fa-picture-o"></i>
+                        <input type="file" style="font-size: 0;position: absolute;z-index: 1;width: 40px;height: 30px;margin-left: 71px;opacity: 0;">
                     </div>
                     <div class="col-xs-4">
                         <i class="fa fa-picture-o"></i>

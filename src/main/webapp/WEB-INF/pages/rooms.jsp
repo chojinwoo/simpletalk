@@ -42,6 +42,7 @@
         stomp.connect([], function(frame) {
             console.log(frame);
             stomp.subscribe("/topic/message", function(data) {
+                console.log(data);
                 var json = JSON.parse(data.body);
                 var to;
                 if(json.from == '${id}') {

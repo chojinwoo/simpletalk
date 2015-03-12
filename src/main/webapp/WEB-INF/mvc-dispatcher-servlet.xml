@@ -20,6 +20,12 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean id="multipartResolver"
+                class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- setting maximum upload size -->
+        <property name="maxUploadSize" value="100000" />
+    </bean>
+
     <websocket:message-broker application-destination-prefix="/app">
         <websocket:stomp-endpoint path="/ws">
             <websocket:sockjs/>

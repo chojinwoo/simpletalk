@@ -191,6 +191,24 @@
     $.messageSend = function() {
         var msg = $('.message').val();
         var emoticon = $('.emo-chat > img').attr('src');
+        var picture = $('.pic-chat > img').attr('src');
+        if(picture != null) {
+            var formData = new FormData();
+            formData.append("file", $('.fa-picture-hidden')[0].files[0]);
+
+            $.ajax({
+                url:'/upload',
+                type:'post',
+                data:formData,
+                async:false,
+                processData: false,
+                contentType: false,
+                success:function(data) {
+                    emoticon = data;
+                    $('.pic-chat').hide('slow');
+                }
+            })
+        }
         stomp.send("/app/message", {}, JSON.stringify({"from":'${id}', "to":"${param.to}", "emoticon":emoticon, "message":msg, "regId":'${regId}'}));
         $('.message').val("");
         $('.emo-chat img').removeAttr('src');

@@ -13,7 +13,13 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -51,6 +57,25 @@ public class ChatController {
     @ResponseBody
     public String roomList(Principal principal) {
         return this.chatService.roomList(principal.getName());
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public String upload(MultipartRequest req) throws IOException {
+        MultipartFile mf = req.getFile("file");
+        String rootPath = new test().getClass().getResource("/").getPath();
+        SimpleDateFormat sdf = new SimpleDateFormat("yMd");
+        File dir = new File(rootPath);
+        String basePath = dir.getParentFile().getParentFile().getPath();
+        String path = basePath + File.separator + "resources" + File.separator + "upload" + File.separator + sdf.format(new Date());
+        File pathDir = new File(path);
+        if(!pathDir.exists()) {
+            pathDir.mkdir();
+        }
+        String uuid = UUID.randomUUID().toString();
+        File saveFile = new File(pathDir + File.separator + uuid + "." +mf.getContentType().split("/")[1]);
+        mf.transferTo(saveFile);
+        return File.separator + "resources" + File.separator + "upload" + File.separator + sdf.format(new Date()) + File.separator + uuid + "." +mf.getContentType().split("/")[1];
     }
 
     @MessageMapping("/message")

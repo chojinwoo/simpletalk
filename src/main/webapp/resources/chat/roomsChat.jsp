@@ -112,11 +112,11 @@
 
     </div>
     <div class="emo-chat" aria-hidden="true">
-        <img src=""/>
+        <img src="" style="height:100%;"/>
         <span class="glyphicon glyphicon-remove-sign emo-cancel"></span>
     </div>
     <div class="pic-chat" aria-hidden="true">
-        <img src=""/>
+        <img src="" style="height:100%;"/>
         <span class="glyphicon glyphicon-remove-sign emo-cancel"></span>
     </div>
 </div>

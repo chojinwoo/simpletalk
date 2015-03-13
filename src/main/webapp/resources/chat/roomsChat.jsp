@@ -170,7 +170,12 @@
                             var clone = $('.chat').find('.hide:eq(0)').clone();
                             clone.removeClass('hide');
                             clone.find('.chat-name').text(name);
-                            clone.find('.chat-emoticon img').attr('src', emoticon);
+                            if(emoticon == "" || emoticon == null) {
+                                clone.find('.chat-emoticon img').addClass('hide');
+                            } else {
+                                clone.find('.chat-emoticon img').attr('src', emoticon);
+                            }
+
                             clone.find('.chat-content p').text(message);
                             clone.find('.chat-date').text(time);
                             $('.chat').append(clone);
@@ -178,7 +183,11 @@
                             var clone = $('.chat').find('.hide:eq(1)').clone();
                             clone.removeClass('hide');
                             clone.find('.chat-name').text(name);
-                            clone.find('.chat-emoticon img').attr('src', emoticon);
+                            if(emoticon == "" || emoticon == null) {
+                                clone.find('.chat-emoticon img').addClass('hide');
+                            } else {
+                                clone.find('.chat-emoticon img').attr('src', emoticon);
+                            }
                             clone.find('.chat-content p').text(message);
                             clone.find('.chat-date-reverse').text(time);
                             $('.chat').append(clone);

@@ -34,7 +34,7 @@
     </security:http>
 
     <bean class="com.talk.user.dao.UserDaoImpl" id="userDao">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
     </bean>
 
     <bean class="com.talk.user.service.UserServiceImpl" id="userService">

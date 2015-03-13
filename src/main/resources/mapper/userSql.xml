@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+    <select id="rooms" parameterType="java.lang.String" resultType="java.util.Map">
+        <![CDATA[select id from users where id <> #{id} order by id]]>
+    </select>
+
+    <select id="sendGcm" parameterType="java.lang.String" resultType="java.util.Map">
+        select regid from users where id = #{to}
+    </select>
+
+    <insert id="register" parameterType="userVo">
+        insert into users(id, password, name, regid, phonenum) values(#{id}, #{password}, #{name}, #{regId}, #{phoneNum})
+    </insert>
+
+    <select id="usersByUsernameQuery" parameterType="java.lang.String" resultType="userVo">
+        SELECT id, password, name, enabled, regid FROM users WHERE id= #{id}
+    </select>
+
+    <select id="authoritiesByUsernameQuery" parameterType="java.lang.String" resultType="java.util.Map">
+        select b.role from users a inner join user_roles b on a.id = b.id and a.id = #{id}
+    </select>
+</mapper>

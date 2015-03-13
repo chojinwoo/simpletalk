@@ -47,7 +47,7 @@ public class GcmVo implements Serializable {
         if(data == null)
             data = new HashMap<String,String>();
 
-        data.put("from", from);
+        data.put("title", from);
         data.put("message", message);
     }
 }

@@ -2,9 +2,11 @@ package com.talk.chat.dao;
 
 import com.talk.common.gcm.GcmVo;
 import com.talk.common.gcm.PostGcm;
+import com.talk.user.vo.UserVo;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -21,13 +23,16 @@ import java.util.*;
 public class ChatDaoImpl implements ChatDao {
     private Map rms = new HashMap();
 
+//    @Autowired
+//    private JdbcTemplate jdbcTemplate;
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private SqlSessionTemplate sqlSessionTemplate;
 
     @Override
     public void rooms(String id, Model model) {
         JSONObject jo = new JSONObject();
-        List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList("select id from users where id <> ? order by id", new Object[]{id});
+//        List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList("select id from users where id <> ? order by id", new Object[]{id});
+        List<Map<String, Object>> usersList = sqlSessionTemplate.selectList("user.rooms", id);
         Map usersMap = new HashMap();
         usersMap.put("users", usersList);
         jo.putAll(usersMap);
@@ -89,11 +94,12 @@ public class ChatDaoImpl implements ChatDao {
         jo.put("date", date);
         jo.put("time", time);
         jo.put("flag", "1");
-        sendGcm(jo);
+
 
         roomSave(id, (String) jo.get("to"));
         msgFromSave(jo);
         msgToSave(jo);
+        sendGcm(jo);
         return jo.toString();
     }
 
@@ -150,16 +156,17 @@ public class ChatDaoImpl implements ChatDao {
     public void sendGcm(JSONObject jo) {
         String to = (String) jo.get("to");
         String msg1 = (String) jo.get("from");
-        String msg2 = (String) jo.get("message");System.out.println(to);
-        Map map = this.jdbcTemplate.queryForMap("select regid from users where id = ?", new Object[]{to});
-        String regId = (String) map.get("regId");
-//        System.out.println("regId null chk : " + regId == null);
-//        System.out.println("regId empty chk : " + );
+        String msg2 = (String) jo.get("message");
 
-        String apiKey = "AIzaSyADK_frqsKz8Jb_SEgpkcvsGkIC9561LII";
-        GcmVo gcmVo = new GcmVo();
+        if(to != null && (!to.equals(""))) {
+            Map map = this.sqlSessionTemplate.selectOne("user.sendGcm", to);
+            String regId = (String) map.get("regid");
+            System.out.println(regId);
 
-        if(regId != "" && (!regId.equals(""))) {
+            String apiKey = "AIzaSyADK_frqsKz8Jb_SEgpkcvsGkIC9561LII";
+            GcmVo gcmVo = new GcmVo();
+
+
             gcmVo.addRegId(regId);
             gcmVo.createData(msg1, msg2);
             PostGcm.post(apiKey, gcmVo);

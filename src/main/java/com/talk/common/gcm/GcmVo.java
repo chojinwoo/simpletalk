@@ -43,11 +43,11 @@ public class GcmVo implements Serializable {
         registration_ids.add(regId);
     }
 
-    public void createData(String title, String message){
+    public void createData(String from, String message){
         if(data == null)
             data = new HashMap<String,String>();
 
-        data.put("title", title);
+        data.put("from", from);
         data.put("message", message);
     }
 }

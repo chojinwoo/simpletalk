@@ -30,7 +30,7 @@
             <security:concurrency-control max-sessions="1"/>
         </security:session-management>
         <security:logout logout-url="/logout" />
-        <security:remember-me token-validity-seconds="-1" remember-me-parameter="remember-me" data-source-ref="dataSource" />
+        <security:remember-me token-validity-seconds="31536000" remember-me-parameter="remember-me" data-source-ref="dataSource" />
     </security:http>
 
     <bean class="com.talk.user.dao.UserDaoImpl" id="userDao">

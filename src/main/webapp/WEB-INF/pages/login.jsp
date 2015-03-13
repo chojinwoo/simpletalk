@@ -31,7 +31,6 @@
     </script>
 </security:authorize>
 <div class="container">
-
     <form class="form-signin" action="/login" method="post">
         <h2 class="form-signin-heading">로그인</h2>
         <label for="inputEmail" class="sr-only">아이디</label>
@@ -126,7 +125,10 @@
                     type:'post',
                     data:$('#registerForm').serialize(),
                     success:function(data) {
-                        alert(data);
+                        if(data == 1) {
+                            $('#registerModal').modal('hide');
+                            alert("가입이 완료 되었습니다.");
+                        }
                     }
                 })
             })

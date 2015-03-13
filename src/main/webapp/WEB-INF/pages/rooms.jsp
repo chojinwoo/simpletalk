@@ -49,7 +49,12 @@
                     var clone = $('.chat').find('.hide:eq(0)').clone();
                     clone.removeClass('hide');
                     clone.find('.chat-name').text(json.from);
-                    clone.find('.chat-emoticon > img').attr('src', json.emoticon);
+                    if(json.emoticon == "" || json.emoticon == null) {
+                        clone.find('.chat-emoticon > img').addClass('hide');
+                    } else {
+                        clone.find('.chat-emoticon > img').attr('src', json.emoticon);
+                    }
+
                     clone.find('.chat-content').text(json.message);
                     clone.find('.chat-date').text(json.time);
                     $('.chat').append(clone);
@@ -58,7 +63,11 @@
                     var clone = $('.chat').find('.hide:eq(1)').clone();
                     clone.removeClass('hide');
                     clone.find('.chat-name').text(json.from);
-                    clone.find('.chat-emoticon > img').attr('src', json.emoticon);
+                    if(json.emoticon == "" || json.emoticon == null) {
+                        clone.find('.chat-emoticon > img').addClass('hide');
+                    } else {
+                        clone.find('.chat-emoticon > img').attr('src', json.emoticon);
+                    }
                     clone.find('.chat-content').text(json.message);
                     clone.find('.chat-date-reverse').text(json.time);
                     $('.chat').append(clone);

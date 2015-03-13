@@ -22,10 +22,11 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value="/register", method= RequestMethod.POST)
+    @ResponseBody
     public String register(@ModelAttribute("command")UserVo userVo) {
 
         String flag = this.userService.register(userVo);
 
-        return "/";
+        return flag;
     }
 }

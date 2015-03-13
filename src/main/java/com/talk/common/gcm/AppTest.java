@@ -18,7 +18,7 @@ public class AppTest {
 
         GcmVo c = new GcmVo();
 
-        c.addRegId("APA91bHioSymVMsISoNsPcWqzqc4pFeiuuvRj9NwHU3H_9NMQzofiuK2Toce8u7TRn_Bo5AgbGLISMfS9NZGXdl4CBgpGRvNelhF7AGbF9_rxG1OWIj2bgaGngPCkl2lWyIrs9cFRb4vGyGN0bjG_KZTHIEHevE_8w");
+        c.addRegId("APA91bEnN36XGoVP3rKk84y7SS4efXkfqwrRMSS5ULsh_9ZN9JSb0mgSRMtl5OxwuRC13S__EU7YpjLHgDjjBWPfQkJrU9O0KJafo35ZpdA3Ze-Tz26M0esAqs_5bZpsdjUlaWzs6KRCL3ECK3G8rWUuL7twOebzWQ");
         c.createData("메시지 전송", "테스트 메시지");
 
         return c;

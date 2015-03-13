@@ -150,7 +150,7 @@ public class ChatDaoImpl implements ChatDao {
     public void sendGcm(JSONObject jo) {
         String to = (String) jo.get("to");
         String msg1 = (String) jo.get("from");
-        String msg2 = (String) jo.get("message");
+        String msg2 = (String) jo.get("message");System.out.println(to);
         Map map = this.jdbcTemplate.queryForMap("select regid from users where id = ?", new Object[]{to});
         String regId = (String) map.get("regId");
 //        System.out.println("regId null chk : " + regId == null);
@@ -161,7 +161,7 @@ public class ChatDaoImpl implements ChatDao {
 
         if(regId != "" && (!regId.equals(""))) {
             gcmVo.addRegId(regId);
-            gcmVo.createData(msg1, msg2);
+            gcmVo.createData(msg2, msg2);
             PostGcm.post(apiKey, gcmVo);
         }
 

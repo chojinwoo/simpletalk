@@ -161,7 +161,7 @@ public class ChatDaoImpl implements ChatDao {
 
         if(regId != "" && (!regId.equals(""))) {
             gcmVo.addRegId(regId);
-            gcmVo.createData(msg2, msg2);
+            gcmVo.createData(msg1, msg2);
             PostGcm.post(apiKey, gcmVo);
         }
 

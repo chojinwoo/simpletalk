@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div style="width:100%;position:fixed; bottom:0px;">
+        <div class="chat-footer" style="width:100%;position:fixed; bottom:0px;">
             <div class="input-group" style="background-color:#F0F0F0;height:42px;padding:4px 4px 4px 40px;">
                 <span class="file-btn" aria-hidden="true"><i class="fa fa-plus"></i></span>
                 <input type="text" class="form-control message">
@@ -245,18 +245,18 @@
         })
 
 
-//        /* 사진 업로드 및 파일 선택 버튼 클릭시 이벤트*/
-//        $('.file-btn').on('click', function() {
-//            var display = $('.console').css('display');
-//            if(display == 'none') {
-//                $('.pic-chat').hide('slow');
-//                $('.emo-chat').hide('slow');
-//                $('.console').show("blind", 200);
-//            } else {
-//                $('.console').hide("blind", 200);
-//            }
-//
-//        })
+        /* 사진 업로드 및 파일 선택 버튼 클릭시 이벤트*/
+        $('.file-btn').on('click', function() {
+            var display = $('.console').css('display');
+            if(display == 'none') {
+                $('.pic-chat').hide('slow');
+                $('.emo-chat').hide('slow');
+                $('.console').show("blind", 200);
+            } else {
+                $('.console').hide("blind", 200);
+            }
+
+        })
 
         var firstEmoIdx = 1;
         $.emoticonChange(firstEmoIdx);

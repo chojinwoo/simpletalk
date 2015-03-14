@@ -31,8 +31,6 @@ import java.util.*;
  */
 @Controller
 public class ChatController {
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
     private Map rms = new HashMap();
     @Autowired
     private ChatService chatService;
@@ -72,7 +70,7 @@ public class ChatController {
     @ResponseBody
     public String upload(MultipartRequest req) throws IOException {
         MultipartFile mf = req.getFile("file");
-        String rootPath = new test().getClass().getResource("/").getPath();
+        String rootPath = this.getClass().getResource("/").getPath();
         SimpleDateFormat sdf = new SimpleDateFormat("yMd");
         File dir = new File(rootPath);
         String basePath = dir.getParentFile().getParentFile().getPath();

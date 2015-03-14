@@ -30,6 +30,11 @@ public class ChatDaoImpl implements ChatDao {
     private SqlSessionTemplate sqlSessionTemplate;
 
     @Override
+    public void remove() {
+        rms.clear();
+    }
+
+    @Override
     public void rooms(String id, Model model) {
         JSONObject jo = new JSONObject();
 //        List<Map<String, Object>> usersList = this.jdbcTemplate.queryForList("select id from users where id <> ? order by id", new Object[]{id});

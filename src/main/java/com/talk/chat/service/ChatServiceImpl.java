@@ -17,6 +17,11 @@ public class ChatServiceImpl implements ChatService {
     private ChatDao chatDao;
 
     @Override
+    public void remove() {
+        this.chatDao.remove();
+    }
+
+    @Override
     public void rooms(String id, Model model) {
         this.chatDao.rooms(id, model);
     }

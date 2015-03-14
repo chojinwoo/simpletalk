@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +36,12 @@ public class ChatController {
     private Map rms = new HashMap();
     @Autowired
     private ChatService chatService;
+
+    @RequestMapping(value="/remove", method=RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String remove() {
+        return "rooms";
+    }
 
     @RequestMapping(value = "/rooms", method = RequestMethod.GET)
     public String rooms(Principal principal, Model model) {

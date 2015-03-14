@@ -208,7 +208,7 @@ public class ChatDaoImpl implements ChatDao {
         String date = (String) message.get("date");
         String time = (String) message.get("time");
         String flag = (String) message.get("flag");
-
+System.out.println(from  + "/" + to);
         Map rmList = (HashMap) rms.get(from);
         Map rm = (HashMap) rmList.get(to);
         List msgList= (List) rm.get("msg");

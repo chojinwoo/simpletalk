@@ -22,13 +22,27 @@
     <script type="text/javascript" src="/resources/js/sockJs.js"></script>
     <script type="text/javascript" src="/resources/js/stomp.js"></script>
     <script type="text/javascript" src="/resources/js/stompSet.js"></script>
+    <style>
+        .kind-badge{
+            margin-right: 6px;
+            color: white;
+            background-color: firebrick;
+            width: 20px;
+            text-align: center;
+            border-radius: 10px;
+            position: absolute;
+            top: 3px;
+            margin-left: -25px;
+        }
+    </style>
 </head>
 <body>
 <div class="user-content">
     <div class="user-header">
         <span class="kind active"><i class="fa fa-user" style=""></i></span>
-        <span class="kind"><i class="fa fa-weixin fa-chatList"></i></span>
 
+        <span class="kind"><i class="fa fa-weixin fa-chatList"></i></span>
+        <span class="kind-badge"></span>
         <span class="users"><i class="fa fa-users"></i></span>
         <span class="user-plus hide"><i class="fa fa-user-plus"></i></span>
     </div>
@@ -36,6 +50,21 @@
     </div>
 </div>
 <script>
+
+    $.writerSync = function() {
+        $.ajax({
+            url:"/allWriterSync",
+            type:'post',
+            success:function(data) {
+                if(data != 0) {
+                    $('.kind-badge').removeClass('hide')
+                    $('.kind-badge').text(data);
+                } else {
+                    $('.kind-badge').addClass('hide');
+                }
+            }
+        })
+    }
     $(document).ready(function() {
         var ws = new SockJS("/ws");
         stomp = Stomp.over(ws);
@@ -78,7 +107,7 @@
                 if($('body').find('.chat').length > 0) {
                     chatStayFlag = '0';
                 }
-
+                $.writerSync();
                 stomp.send("/app/syncChatList", {}, JSON.stringify({"chatStayFlag":chatStayFlag, "to":to}));
             })
 
@@ -117,6 +146,7 @@
                         }
                     }
                 }
+
                 $('.chatList').off();
                 $('.chatList').click(function() {
                     var to = $(this).find('.chatList-name span:first').text();
@@ -125,26 +155,27 @@
                     });
                 })
             })
+            $.writerSync();
         })
 
         $(document).on('swiperight', function() {
             if($('.chatList-body').length > 0) {
-                $('.user-body').load('/resources/chat/roomsChatUser.jsp',{'users':'${users}'});
+                $('.user-body').load('/resources/chat/roomsChatUser.jsp',{'users':'${users}'}, function() {$.writerSync();});
             }
         })
         $(document).on('swipeleft', function() {
             if($('.chatUser-body').length > 0) {
-                $('.user-body').load('/resources/chat/roomsChatList.jsp');
+                $('.user-body').load('/resources/chat/roomsChatList.jsp', function() {$.writerSync();});
             }
         })
 
-        $('.user-body').load('/resources/chat/roomsChatUser.jsp', {'users':'${users}'});
+        $('.user-body').load('/resources/chat/roomsChatUser.jsp', {'users':'${users}'}, function() {$.writerSync();});
 
         $('.fa-user').on('click', function() {
-            $('.user-body').load('/resources/chat/roomsChatUser.jsp',{'users':'${users}'});
+            $('.user-body').load('/resources/chat/roomsChatUser.jsp',{'users':'${users}'}, function() {$.writerSync();});
         })
         $('.fa-chatList').on('click', function() {
-            $('.user-body').load('/resources/chat/roomsChatList.jsp');
+            $('.user-body').load('/resources/chat/roomsChatList.jsp', function() {$.writerSync();});
         })
 
     })

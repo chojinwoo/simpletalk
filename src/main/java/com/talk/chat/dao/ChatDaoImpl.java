@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
+import java.security.Key;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -153,15 +154,39 @@ public class ChatDaoImpl implements ChatDao {
         }
     }
 
+    @Override
+    public String allWriterSync(String from) {
+        int allIndex = 0;
+        HashMap rmList = (HashMap) rms.get(from);
+        System.out.println(rmList);
+        Set set = rmList.keySet();
+        Iterator iterator = set.iterator();
+        while(iterator.hasNext()) {
+            String key = (String) iterator.next();
+            HashMap rm = (HashMap) rmList.get(key);
+            List list = (List) rm.get("msg");
+            Iterator iter =list.iterator();
+            while(iter.hasNext()) {
+                HashMap msg = (HashMap) iter.next();
+                Object flag = msg.get("flag");
+                if(String.valueOf(flag).equals("1")) {
+                    ++allIndex;
+                }
+            }
+        }
+
+        return String.valueOf(allIndex);
+    }
+
     public void sendGcm(JSONObject jo) {
         String to = (String) jo.get("to");
         String msg1 = (String) jo.get("from");
         String msg2 = (String) jo.get("message");
+        Map map = this.sqlSessionTemplate.selectOne("user.sendGcm", to);
+        String regId = (String) map.get("regid");
+        if(regId != null && (!regId.equals(""))) {
 
-        if(to != null && (!to.equals(""))) {
-            Map map = this.sqlSessionTemplate.selectOne("user.sendGcm", to);
-            String regId = (String) map.get("regid");
-            System.out.println(regId);
+//            System.out.println(regId);
 
             String apiKey = "AIzaSyADK_frqsKz8Jb_SEgpkcvsGkIC9561LII";
             GcmVo gcmVo = new GcmVo();

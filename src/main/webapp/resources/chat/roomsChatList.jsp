@@ -21,10 +21,10 @@
 
     $.chatListInit = function() {
         $.ajax({
-            url:'/roomList',
-            dataType:'json',
-            type:'post',
-            success:function(data) {
+                url:'/roomList',
+                dataType:'json',
+                type:'post',
+                success:function(data) {
                 for(k in data) {
                     var rm = data[k];
                     var writerCount = 0;
@@ -58,6 +58,7 @@
                 $('.chatList').click(function() {
                     var to = $(this).find('.chatList-name span:first').text();
                     $('.user-body').load('resources/chat/roomsChat.jsp', {"to": to}, function() {
+                        $.writerSync();
                         stomp.send('/app/messageChk', {}, to);
                     });
                 })

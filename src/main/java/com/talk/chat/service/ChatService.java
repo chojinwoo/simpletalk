@@ -15,4 +15,5 @@ public interface ChatService {
     public String message(String id, String message);
     public String syncChatList(String id, String message);
     public void messageChk(String id, String to);
+    public String allWriterSync(String from);
 }

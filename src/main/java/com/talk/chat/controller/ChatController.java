@@ -78,6 +78,12 @@ public class ChatController {
         return File.separator + "resources" + File.separator + "upload" + File.separator + sdf.format(new Date()) + File.separator + uuid + "." +mf.getContentType().split("/")[1];
     }
 
+    @RequestMapping(value = "/allWriterSync", method = RequestMethod.POST)
+    @ResponseBody
+    public String allWriterSync(Principal principal) {
+        return this.chatService.allWriterSync(principal.getName());
+    }
+
     @MessageMapping("/message")
     @SendTo("/topic/message")
     public String message(Principal principal, String message) throws ParseException {

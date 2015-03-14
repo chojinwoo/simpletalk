@@ -50,4 +50,9 @@ public class ChatServiceImpl implements ChatService {
     public void messageChk(String id, String to) {
         this.chatDao.messageChk(id, to);
     }
+
+    @Override
+    public String allWriterSync(String from) {
+        return this.chatDao.allWriterSync(from);
+    }
 }

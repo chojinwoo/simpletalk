@@ -14,6 +14,10 @@
         insert into users(id, password, name, regid, phonenum) values(#{id}, #{password}, #{name}, #{regId}, #{phoneNum})
     </insert>
 
+    <insert id="addRole" parameterType="java.lang.String">
+        insert into user_roles(id, role) values(#{id}, 'ROLE_USER')
+    </insert>
+
     <select id="usersByUsernameQuery" parameterType="java.lang.String" resultType="userVo">
         SELECT id, password, name, enabled, regid FROM users WHERE id= #{id}
     </select>

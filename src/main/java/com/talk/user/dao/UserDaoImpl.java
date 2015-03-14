@@ -32,8 +32,9 @@ public class UserDaoImpl implements UserDao {
         String phoneStr = String.format("%011d", phoneNum);
         userVo.setPhoneNum(phoneStr);
         int insertFlag = this.sqlSessionTemplate.insert("user.register", userVo);
-//        int insertFlag = this.jdbcTemplate.update("insert into users(id, password, name, regid, phonenum) values(?, ?, ?, ?, ?)",
-//                new Object[]{userVo.getUsername(), pw, userVo.getName(), userVo.getRegId(), phoneStr});
+        if(insertFlag == 1) {
+            insertFlag  = this.sqlSessionTemplate.insert("user.addRole", userVo.getUsername());
+        }
 
         return String.valueOf(insertFlag);
     }

@@ -31,7 +31,7 @@ public class ChatDaoImpl implements ChatDao {
 
     @Override
     public void remove() {
-        rms.clear();
+        rms = new HashMap();
     }
 
     @Override

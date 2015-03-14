@@ -37,6 +37,7 @@
         <param-value>
             classpath:security-context.xml
             classpath:db-context.xml
+            <!--classpath:task-context.xml-->
         </param-value>
     </context-param>
 

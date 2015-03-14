@@ -3,6 +3,7 @@ package com.talk.chat.service;
 import com.talk.chat.dao.ChatDao;
 import com.talk.user.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -59,5 +60,11 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public String allWriterSync(String from) {
         return this.chatDao.allWriterSync(from);
+    }
+
+    @Scheduled(cron="* * 4 * * ?")
+    public void remover() {
+        System.out.println("asdf");
+        this.chatDao.remove();
     }
 }

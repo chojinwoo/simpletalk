@@ -3,7 +3,7 @@
 <mapper namespace="user">
 
     <select id="rooms" parameterType="java.lang.String" resultType="java.util.Map">
-        <![CDATA[select id from users where id <> #{id} order by id]]>
+        <![CDATA[select id, name from users where id <> #{id} order by id]]>
     </select>
 
     <select id="sendGcm" parameterType="java.lang.String" resultType="java.util.Map">

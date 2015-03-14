@@ -19,10 +19,12 @@
     var json = JSON.parse('${param.users}');
     for(var i=0; i<json.users.length; i++) {
         var username =json.users[i].id;
+        var name =json.users[i].name;
         var div = $('<div>').addClass('list');
-        var nameSpan = $('<span>').text(username);
+        var usernameSpan = $('<span>').text(username);
+        var nameSpan = $('<span>').text("("+name+")");
         var chatSpan = $('<span>').addClass('plus').append($('<i>').addClass('fa fa-weixin'));
-        div.append(nameSpan, chatSpan);
+        div.append(usernameSpan ,nameSpan, chatSpan);
         $('.chatUser-body').append(div);
     }
     $(document).ready(function() {

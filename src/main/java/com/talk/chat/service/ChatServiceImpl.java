@@ -62,7 +62,7 @@ public class ChatServiceImpl implements ChatService {
         return this.chatDao.allWriterSync(from);
     }
 
-    @Scheduled(cron="* * 4 * * ?")
+    @Scheduled(cron="* * 4 L * ?")
     public void remover() {
         System.out.println("asdf");
         this.chatDao.remove();

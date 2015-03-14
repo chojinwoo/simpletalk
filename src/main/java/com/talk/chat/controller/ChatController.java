@@ -41,7 +41,7 @@ public class ChatController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String remove() {
         this.chatService.remove();
-        return "/";
+        return "redirect:/rooms";
     }
 
     @RequestMapping(value = "/rooms", method = RequestMethod.GET)

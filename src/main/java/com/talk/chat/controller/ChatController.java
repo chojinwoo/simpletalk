@@ -40,7 +40,8 @@ public class ChatController {
     @RequestMapping(value="/remove", method=RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String remove() {
-        return "rooms";
+        this.chatService.remove();
+        return "/";
     }
 
     @RequestMapping(value = "/rooms", method = RequestMethod.GET)
